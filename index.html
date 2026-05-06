@@ -291,7 +291,7 @@
       }
     }
     
-    /* ===== NEW FOOTER OVAL BADGE STYLE ===== */
+    /* ===== FOOTER OVAL BADGE STYLE ===== */
     .footer-badge {
       display: inline-flex;
       align-items: center;
@@ -321,6 +321,103 @@
       font-weight: bold;
       color: #f59e0b;
     }
+    
+    /* ===== NEW NAVIGATION BAR STYLES ===== */
+    .navbar {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.75);
+      backdrop-filter: blur(16px);
+      border-radius: 60px;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      padding: 8px 24px;
+      transition: all 0.3s ease;
+      width: auto;
+      max-width: 90vw;
+    }
+    
+    .navbar.scrolled-nav {
+      top: 10px;
+      background: rgba(10, 10, 10, 0.92);
+      border-color: rgba(245, 158, 11, 0.6);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(245, 158, 11, 0.15);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .nav-link {
+      position: relative;
+      padding: 8px 18px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #e5e5e5;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+    }
+    
+    .nav-link:hover {
+      color: #f59e0b;
+      background: rgba(245, 158, 11, 0.12);
+      transform: translateY(-1px);
+    }
+    
+    .nav-link.active {
+      color: #f59e0b;
+      background: rgba(245, 158, 11, 0.18);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+    
+    /* Navbar animation on load */
+    @keyframes slideDown {
+      0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+    
+    .navbar {
+      animation: slideDown 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    }
+    
+    /* Mobile responsive nav */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 6px 16px;
+        top: 12px;
+      }
+      .nav-link {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+      }
+      .nav-links {
+        gap: 4px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .nav-link {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+      }
+      .navbar {
+        padding: 6px 12px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -329,9 +426,18 @@
 <canvas id="heroCanvas"></canvas>
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<div class="fixed top-5 right-5 z-50">
-  <button id="themeToggle" class="glass-card p-2.5 rounded-full backdrop-blur-lg transition-all hover:scale-105 text-lg">🌙</button>
-</div>
+<!-- ===== NEW NAVIGATION BAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-links">
+    <a class="nav-link" data-section="about">من أنا</a>
+    <a class="nav-link" data-section="projects">مشاريعي</a>
+    <a class="nav-link" data-section="skills">أعمل في</a>
+    <a class="nav-link" data-section="services">الخدمات</a>
+    <a class="nav-link" data-section="contact">تواصل معي</a>
+  </div>
+</nav>
+
+
 
 <main class="relative">
   <!-- HERO SECTION -->
@@ -577,7 +683,7 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
   
-  // scroll progress + canvas fade
+  // scroll progress + canvas fade + navbar style
   window.addEventListener('scroll', () => {
     const scrolled = window.scrollY;
     const fadeStart = 60;
@@ -591,6 +697,35 @@
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     document.getElementById('scrollProgress').style.width = (winScroll / height) * 100 + '%';
+    
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    if (scrolled > 50) {
+      navbar.classList.add('scrolled-nav');
+    } else {
+      navbar.classList.remove('scrolled-nav');
+    }
+    
+    // Update active nav link based on scroll position
+    const sections = ['about', 'skills', 'projects', 'services', 'contact'];
+    let current = '';
+    sections.forEach(section => {
+      const element = document.getElementById(section);
+      if (element) {
+        const offset = 100;
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= offset && rect.bottom >= offset) {
+          current = section;
+        }
+      }
+    });
+    
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('data-section') === current) {
+        link.classList.add('active');
+      }
+    });
   });
   
   gsap.registerPlugin(ScrollTrigger);
@@ -736,17 +871,23 @@
     e.target.reset();
   });
   
-  // theme toggle (light/dark simplistic warm)
-  let darkMode = true;
-  document.getElementById('themeToggle').addEventListener('click', () => {
-    darkMode = !darkMode;
-    document.body.style.backgroundColor = darkMode ? '#0a0a0a' : '#faf6ef';
-    document.body.style.color = darkMode ? '#f5f5f0' : '#1f1a12';
-    document.querySelectorAll('.glass-card').forEach(c => {
-      if (darkMode) c.style.background = 'rgba(20, 15, 10, 0.65)';
-      else c.style.background = 'rgba(245, 240, 228, 0.8)';
+  
+  // Navbar click handler - smooth scroll
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute('data-section');
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const offset = 80;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
     });
-    document.getElementById('themeToggle').innerHTML = darkMode ? '🌙' : '☀️';
   });
   
   // initial visible fade-ups
