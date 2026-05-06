@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Mohammed Almomani | Full Stack Developer & AI Engineer</title>
-  <!-- Google Fonts + Tailwind + GSAP -->
+  <!-- Google Fonts + Tailwind + GSAP + Three.js CDN -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Poppins:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -167,15 +167,15 @@
     }
     .lang-badge {
       position: absolute;
-      width: 30px;
-      height: 30px;
+      width: 34px;
+      height: 34px;
       background: rgba(15, 12, 18, 0.92);
       backdrop-filter: blur(10px);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 2px solid rgba(245, 158, 11, 0.7);
+      border: 2px solid rgba(245, 158, 11, 0.8);
       box-shadow: 0 0 16px rgba(245, 158, 11, 0.4);
       transition: all 0.25s ease;
       overflow: hidden;
@@ -187,14 +187,14 @@
       background: rgba(30, 25, 20, 0.98);
     }
     .lang-badge img {
-      width: 42px;
-      height: 42px;
+      width: 48px;
+      height: 48px;
       object-fit: contain;
     }
-    .badge-pos-1 { top: -12px; left: 50%; transform: translateX(-50%); }
-    .badge-pos-2 { top: 50%; right: -28px; transform: translateY(-50%); }
-    .badge-pos-3 { bottom: -12px; left: 50%; transform: translateX(-50%); }
-    .badge-pos-4 { top: 50%; left: -28px; transform: translateY(-50%); }
+    .badge-pos-1 { top: -10px; left: 50%; transform: translateX(-50%); }
+    .badge-pos-2 { top: 50%; right: -30px; transform: translateY(-50%); }
+    .badge-pos-3 { bottom: -10px; left: 50%; transform: translateX(-50%); }
+    .badge-pos-4 { top: 50%; left: -30px; transform: translateY(-50%); }
     
     /* ENLARGED INNER PROFILE IMAGE */
     .profile-inner {
@@ -231,6 +231,63 @@
     @media (min-width: 768px) {
       .section-container {
         padding: 0 2rem;
+      }
+    }
+    /* custom avatar if image missing -> fallback */
+    .fallback-avatar {
+      background: linear-gradient(145deg, #1f1a12, #0d0a07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      font-weight: bold;
+      color: #f59e0b;
+    }
+    
+    /* ===== NEW OVAL CONTACT BUTTONS STYLES ===== */
+    .contact-oval {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 28px;
+      background: rgba(20, 15, 10, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1.5px solid rgba(245, 158, 11, 0.5);
+      border-radius: 60px;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #f5f5f0;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      letter-spacing: 0.3px;
+    }
+    
+    .contact-oval:hover {
+      transform: translateY(-3px) scale(1.05);
+      border-color: #f59e0b;
+      background: rgba(245, 158, 11, 0.2);
+      box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+      color: #fbbf24;
+    }
+    
+    .contact-oval span {
+      font-size: 1.4rem;
+      transition: transform 0.2s ease;
+    }
+    
+    .contact-oval:hover span {
+      transform: scale(1.1);
+    }
+    
+    /* Responsive adjustment for mobile */
+    @media (max-width: 640px) {
+      .contact-oval {
+        padding: 10px 20px;
+        font-size: 1rem;
+        gap: 8px;
+      }
+      .contact-oval span {
+        font-size: 1.2rem;
       }
     }
   </style>
@@ -290,9 +347,9 @@
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/lua/lua-original.svg" alt="Lua">
               </div>
             </div>
-            <div class="profile-inner">
+            <div class="profile-inner" id="profileImgContainer">
               <!-- Placeholder for real photo - replace with your image URL -->
-              <img src="my-photo.jpg" alt="Mohammed Almomani">
+              <img src="my-photo.jpg" alt="Mohammed Almomani" onerror="this.onerror=null; this.parentElement.classList.add('fallback-avatar'); this.style.display='none'; this.parentElement.innerText='MA'; this.parentElement.style.fontSize='4rem'; this.parentElement.style.fontWeight='bold';">
             </div>
           </div>
         </div>
@@ -300,18 +357,18 @@
         <!-- Right side: About text -->
         <div>
           <h2 class="text-4xl md:text-5xl font-bold mb-6"><span class="border-b-4 border-amber-500 pb-2">About</span> Me</h2>
-          <p class="text-gray-300 text-lg leading-relaxed mb-6">I'm Mohammed Almomani, a Full Stack Developer & UI Engineer passionate about AI. With 2+ years of experience crafting high-performance web applications, I blend cutting-edge AI with robust engineering to deliver unforgettable digital experiences.</p>
+          <p class="text-gray-300 text-lg leading-relaxed mb-6">I'm Mohammed Almomani, a Full Stack Developer & UI Engineer passionate about AI. With 2+ years of experience crafting high-performance web applications, I blend cutting-edge AI with robust engineering to deliver unforgettable digital experiences. I specialize in building scalable full‑stack systems with modern frontend magic and intelligent backends.</p>
           <div class="grid grid-cols-3 gap-4 my-8 text-center">
             <div class="glass-card p-4 rounded-2xl">
-              <div class="text-3xl font-bold text-amber-400 counter" data-target="2">0</div>
+              <div class="text-3xl font-bold text-amber-400 counter" data-target="3">0</div>
               <div class="text-sm text-gray-400 mt-1">Years Exp</div>
             </div>
             <div class="glass-card p-4 rounded-2xl">
-              <div class="text-3xl font-bold text-amber-400 counter" data-target="23">0</div>
+              <div class="text-3xl font-bold text-amber-400 counter" data-target="28">0</div>
               <div class="text-sm text-gray-400 mt-1">Projects</div>
             </div>
             <div class="glass-card p-4 rounded-2xl">
-              <div class="text-3xl font-bold text-amber-400 counter" data-target="3">0</div>
+              <div class="text-3xl font-bold text-amber-400 counter" data-target="7">0</div>
               <div class="text-sm text-gray-400 mt-1">Clients</div>
             </div>
           </div>
@@ -372,10 +429,18 @@
           <textarea rows="5" placeholder="Your Message" class="md:col-span-2 bg-black/40 border border-amber-500/30 rounded-xl p-3 focus:outline-none focus:border-amber-400"></textarea>
           <button type="submit" class="md:col-span-2 btn-primary py-3 rounded-xl font-bold text-white tracking-wide transition-all">Send Message ✨</button>
         </form>
-        <div class="flex justify-center gap-8 mt-10">
-          <a href="https://wa.me/962787297364" class="text-2xl hover:text-amber-400 transition transform hover:scale-110">📞  WhatsApp</a>
-          <a href="https://discord.com/users/1316764279399252111" class="text-2xl hover:text-amber-400 transition transform hover:scale-110">🎧 Discord</a>
-          <a href="mailto:mohmmedalmomani@gmail.com" class="text-2xl hover:text-amber-400 transition transform hover:scale-110">📧 Email</a>
+        
+        <!-- CONTACT BUTTONS - MODIFIED TO OVAL STYLE -->
+        <div class="flex flex-wrap justify-center gap-5 mt-10">
+          <a href="https://wa.me/962787297364" class="contact-oval">
+            <span>📞</span> WhatsApp
+          </a>
+          <a href="https://discord.com/users/1316764279399252111" class="contact-oval">
+            <span>🎧</span> Discord
+          </a>
+          <a href="mailto:mohmmedalmomani@gmail.com" class="contact-oval">
+            <span>📧</span> Email
+          </a>
         </div>
       </div>
     </div>
@@ -400,10 +465,18 @@
   </div>
 </div>
 
-<script type="module">
-  import * as THREE from 'https://unpkg.com/three@0.128.0/build/three.module.js';
+<script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+    }
+  }
+</script>
 
-  // --- Code-themed particles ---
+<script type="module">
+  import * as THREE from 'three';
+
+  // --- Three.js tech particles background ---
   const canvas = document.getElementById('heroCanvas');
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -411,66 +484,57 @@
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setPixelRatio(window.devicePixelRatio);
   
-  const particleCount = 550;
-  const particlesGeometry = new THREE.BufferGeometry();
-  const positions = new Float32Array(particleCount * 3);
-  for (let i = 0; i < particleCount; i++) {
-    positions[i*3] = (Math.random() - 0.5) * 60;
-    positions[i*3+1] = (Math.random() - 0.5) * 35;
-    positions[i*3+2] = (Math.random() - 0.5) * 40 - 20;
-  }
-  particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  const particleGroup = [];
   
-  const canvasTexture = document.createElement('canvas');
-  canvasTexture.width = 64;
-  canvasTexture.height = 64;
-  const ctxTex = canvasTexture.getContext('2d');
-  ctxTex.fillStyle = '#f59e0b';
-  ctxTex.font = '28px monospace';
-  ctxTex.fillText('</>', 12, 45);
-  const spriteMaterial = new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(canvasTexture), color: 0xf59e0b, opacity: 0.4, transparent: true });
-  
-  const particles = [];
-  for (let i = 0; i < 280; i++) {
-    const sprite = new THREE.Sprite(spriteMaterial);
-    sprite.scale.set(0.28, 0.28, 1);
-    sprite.position.set((Math.random() - 0.5) * 55, (Math.random() - 0.5) * 30, (Math.random() - 0.5) * 35);
-    sprite.userData = { speedX: (Math.random() - 0.5) * 0.008, speedY: (Math.random() - 0.5) * 0.008 };
-    scene.add(sprite);
-    particles.push(sprite);
-  }
-  
-  const cubeGeo = new THREE.BoxGeometry(0.12, 0.12, 0.12);
+  // floating cubes
+  const cubeGeo = new THREE.BoxGeometry(0.18, 0.18, 0.18);
   const cubeMat = new THREE.MeshStandardMaterial({ color: 0xea580c, emissive: 0x331a00 });
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 220; i++) {
     const cube = new THREE.Mesh(cubeGeo, cubeMat);
-    cube.position.set((Math.random() - 0.5) * 50, (Math.random() - 0.5) * 28, (Math.random() - 0.5) * 30);
-    cube.userData = { speedX: (Math.random() - 0.5) * 0.007, speedY: (Math.random() - 0.5) * 0.007 };
+    cube.position.set((Math.random() - 0.5) * 55, (Math.random() - 0.5) * 32, (Math.random() - 0.5) * 40);
+    cube.userData = { speedX: (Math.random() - 0.5) * 0.009, speedY: (Math.random() - 0.5) * 0.009 };
     scene.add(cube);
-    particles.push(cube);
+    particleGroup.push(cube);
   }
   
-  const ambientLight = new THREE.AmbientLight(0x332211);
-  scene.add(ambientLight);
-  const pointLight = new THREE.PointLight(0xffaa55, 0.6);
-  pointLight.position.set(2, 3, 5);
-  scene.add(pointLight);
-  camera.position.z = 18;
-  camera.position.y = 1;
+  // glowing sprites with code symbol
+  const canvasTex = document.createElement('canvas');
+  canvasTex.width = 64;
+  canvasTex.height = 64;
+  const ctxTex = canvasTex.getContext('2d');
+  ctxTex.fillStyle = '#f59e0b';
+  ctxTex.font = 'bold 34px monospace';
+  ctxTex.fillText('</>', 12, 48);
+  const spriteTexture = new THREE.CanvasTexture(canvasTex);
+  const spriteMat = new THREE.SpriteMaterial({ map: spriteTexture, color: 0xffaa55, opacity: 0.55, transparent: true });
+  for (let i = 0; i < 180; i++) {
+    const sprite = new THREE.Sprite(spriteMat);
+    sprite.scale.set(0.32, 0.32, 1);
+    sprite.position.set((Math.random() - 0.5) * 58, (Math.random() - 0.5) * 34, (Math.random() - 0.5) * 38);
+    sprite.userData = { speedX: (Math.random() - 0.5) * 0.007, speedY: (Math.random() - 0.5) * 0.007 };
+    scene.add(sprite);
+    particleGroup.push(sprite);
+  }
   
-  function animateParticles() {
-    requestAnimationFrame(animateParticles);
-    particles.forEach(p => {
-      if (p.position) {
-        p.position.x += p.userData.speedX || 0;
-        p.position.y += p.userData.speedY || 0;
-        if (Math.abs(p.position.x) > 38) p.userData.speedX *= -1;
-        if (Math.abs(p.position.y) > 22) p.userData.speedY *= -1;
-      }
+  const ambientLight = new THREE.AmbientLight(0x443322);
+  scene.add(ambientLight);
+  const dirLight = new THREE.DirectionalLight(0xffaa66, 0.7);
+  dirLight.position.set(1, 2, 3);
+  scene.add(dirLight);
+  camera.position.z = 19;
+  camera.position.y = 1.2;
+  
+  function animateBG() {
+    requestAnimationFrame(animateBG);
+    particleGroup.forEach(p => {
+      p.position.x += (p.userData.speedX || 0);
+      p.position.y += (p.userData.speedY || 0);
+      if (Math.abs(p.position.x) > 40) p.userData.speedX *= -1;
+      if (Math.abs(p.position.y) > 25) p.userData.speedY *= -1;
     });
     renderer.render(scene, camera);
   }
-  animateParticles();
+  animateBG();
   
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -478,40 +542,44 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
   
-  // Fade canvas on scroll
+  // scroll progress + canvas fade
   window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const fadeStart = 80;
-    const fadeEnd = 550;
+    const scrolled = window.scrollY;
+    const fadeStart = 60;
+    const fadeEnd = 500;
     let opacity = 1;
-    if (scrollY > fadeStart) opacity = Math.max(0, 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart));
+    if (scrolled > fadeStart) opacity = Math.max(0, 1 - (scrolled - fadeStart) / (fadeEnd - fadeStart));
     canvas.style.opacity = opacity;
-    if (scrollY > 50) document.body.classList.add('scrolled');
+    if (scrolled > 40) document.body.classList.add('scrolled');
     else document.body.classList.remove('scrolled');
+    
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    document.getElementById('scrollProgress').style.width = (winScroll / height) * 100 + '%';
   });
   
   gsap.registerPlugin(ScrollTrigger);
   
-  // Typing Animation
+  // Typing animation
   const roles = ["Full Stack Developer", "UI Engineer", "AI Enthusiast", "Creative Technologist"];
-  let idx = 0, charIdx = 0, isDeleting = false;
+  let idxRole = 0, charPos = 0, deleting = false;
   const typingEl = document.getElementById('typingText');
-  function typeEffect() {
-    const current = roles[idx];
-    if (isDeleting) {
-      typingEl.innerText = current.substring(0, charIdx-1);
-      charIdx--;
-      if (charIdx === 0) { isDeleting = false; idx = (idx+1)%roles.length; }
+  function typeWriter() {
+    const currentText = roles[idxRole];
+    if (deleting) {
+      typingEl.innerText = currentText.substring(0, charPos-1);
+      charPos--;
+      if (charPos === 0) { deleting = false; idxRole = (idxRole+1)%roles.length; }
     } else {
-      typingEl.innerText = current.substring(0, charIdx+1);
-      charIdx++;
-      if (charIdx === current.length) isDeleting = true;
+      typingEl.innerText = currentText.substring(0, charPos+1);
+      charPos++;
+      if (charPos === currentText.length) deleting = true;
     }
-    setTimeout(typeEffect, isDeleting ? 70 : 120);
+    setTimeout(typeWriter, deleting ? 60 : 110);
   }
-  typeEffect();
+  typeWriter();
   
-  // fade-up observer
+  // Intersection Observer for fade-up
   const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); fadeObserver.unobserve(entry.target); } });
   }, { threshold: 0.15 });
@@ -520,25 +588,25 @@
     fadeObserver.observe(el);
   });
   
-  // Counters
+  // Counters with intersection
   const counters = document.querySelectorAll('.counter');
   const counterObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if(entry.isIntersecting) {
+      if (entry.isIntersecting) {
         const el = entry.target;
         const target = parseInt(el.getAttribute('data-target'));
-        let current = 0;
-        const update = setInterval(() => {
-          if(current < target) { current+= Math.ceil(target/45); el.innerText = current; }
-          else { clearInterval(update); el.innerText = target; }
-        }, 25);
+        let cur = 0;
+        const interval = setInterval(() => {
+          if (cur < target) { cur += Math.ceil(target / 40); el.innerText = cur; }
+          else { clearInterval(interval); el.innerText = target; }
+        }, 20);
         counterObserver.unobserve(el);
       }
     });
-  }, { threshold: 0.6 });
+  }, { threshold: 0.7 });
   counters.forEach(c => counterObserver.observe(c));
   
-  // Skills Grid
+  // Skills grid render
   const skillCategories = [
     { name: "Frontend", skills: ["React & Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"] },
     { name: "Backend", skills: ["Node.js", "Python", "GraphQL", "PostgreSQL"] },
@@ -549,25 +617,25 @@
   skillsGrid.innerHTML = skillCategories.map(cat => `
     <div class="glass-card p-5 rounded-2xl skill-card">
       <h3 class="text-xl font-bold mb-4 text-amber-400">${cat.name}</h3>
-      ${cat.skills.map(s => `<div class="mb-3"><div class="flex justify-between text-sm"><span>${s}</span><span>90%</span></div><div class="skill-progress-bar"><div class="skill-progress-fill" data-progress="90"></div></div></div>`).join('')}
+      ${cat.skills.map(s => `<div class="mb-3"><div class="flex justify-between text-sm"><span>${s}</span><span></span></div><div class="skill-progress-bar"><div class="skill-progress-fill" data-progress="88"></div></div></div>`).join('')}
     </div>
   `).join('');
   
   // Projects
   const projects = [
-    { title: "Nebula Analytics", desc: "AI-powered dashboard with real-time insights & predictive models", tech: ["Next.js", "D3", "FastAPI"], icon: "📊" },
-    { title: "Generative UI Studio", desc: "Design-to-code platform using GPT-4 and Stable Diffusion", tech: ["OpenAI", "Tailwind", "Python"], icon: "✨" },
-    { title: "Quantum Commerce", desc: "High-performance PWA e-commerce with edge computing", tech: ["Node", "Stripe", "Redis"], icon: "🛒" }
+    { title: "Nebula Analytics", desc: "AI-powered business intelligence dashboard with predictive insights and real-time anomaly detection.", tech: ["Next.js", "D3", "FastAPI", "TensorFlow"], icon: "📊" },
+    { title: "Generative UI Studio", desc: "Design-to-code platform leveraging GPT-4 and Stable Diffusion for instant component generation.", tech: ["OpenAI", "Tailwind", "Python", "React"], icon: "✨" },
+    { title: "Quantum Commerce", desc: "High-performance PWA e‑commerce with edge caching, Stripe integration, and AI recommendations.", tech: ["Node.js", "Stripe", "Redis", "GraphQL"], icon: "🛒" }
   ];
   const projContainer = document.getElementById('projectsContainer');
   projContainer.innerHTML = projects.map((p,i) => `
     <div class="glass-card rounded-2xl overflow-hidden cursor-pointer project-card transition-all" data-index="${i}">
-      <div class="h-44 bg-gradient-to-br from-amber-800/40 to-orange-800/40 flex items-center justify-center text-5xl">${p.icon}</div>
+      <div class="h-44 bg-gradient-to-br from-amber-800/40 to-orange-800/40 flex items-center justify-center text-6xl">${p.icon}</div>
       <div class="p-5"><h3 class="text-xl font-bold mb-2">${p.title}</h3><p class="text-gray-400 text-sm my-2">${p.desc}</p><div class="flex flex-wrap gap-2">${p.tech.map(t => `<span class="text-xs bg-amber-500/20 px-2 py-1 rounded-full">${t}</span>`).join('')}</div><button class="mt-4 text-amber-400 text-sm font-semibold hover:underline">Explore →</button></div>
     </div>
   `).join('');
   
-  // Modal Logic
+  // Modal logic
   const modal = document.getElementById('projectModal');
   const closeModalBtn = document.getElementById('closeModal');
   document.querySelectorAll('.project-card').forEach(card => {
@@ -585,11 +653,11 @@
   closeModalBtn.addEventListener('click', () => modal.classList.add('hidden'));
   modal.addEventListener('click', (e) => { if(e.target === modal) modal.classList.add('hidden'); });
   
-  // Timeline
+  // Timeline data
   const timelineEntries = [
-    { role: "Lead Full Stack Engineer", company: "TechNova AI", duration: "2023 - Present", desc: "Architecting enterprise AI platforms and leading frontend innovation with a team of 5 engineers." },
-    { role: "Senior UI Engineer", company: "Digital Vanguard", duration: "2021 - 2023", desc: "Built scalable design systems and interactive web applications used by 100k+ users." },
-    { role: "Full Stack Developer", company: "Freelance / Global Clients", duration: "2019 - 2021", desc: "Delivered 20+ high-quality web projects from concept to deployment for international clients." }
+    { role: "Lead Full Stack Engineer", company: "TechNova AI", duration: "2023 - Present", desc: "Architecting enterprise AI platforms and leading frontend innovation with a team of 5 engineers, delivering high-performance dashboards." },
+    { role: "Senior UI Engineer", company: "Digital Vanguard", duration: "2021 - 2023", desc: "Built scalable design systems and interactive web applications used by 100k+ users, optimizing Core Web Vitals." },
+    { role: "Full Stack Developer", company: "Freelance / Global Clients", duration: "2019 - 2021", desc: "Delivered 20+ high-quality web projects from concept to deployment for international clients, specializing in MERN stack." }
   ];
   const timelineList = document.getElementById('timelineList');
   timelineList.innerHTML = timelineEntries.map(item => `
@@ -605,10 +673,10 @@
   
   // Services
   const servicesArr = [
-    { name: "Web Development", icon: "💻", desc: "Full-stack web applications with modern frameworks" },
-    { name: "UI/UX Design", icon: "🎨", desc: "Beautiful, intuitive interfaces with smooth interactions" },
-    { name: "AI Integration", icon: "🧠", desc: "Smart AI solutions powered by GPT, TensorFlow" },
-    { name: "API Architecture", icon: "🔗", desc: "Scalable, secure RESTful & GraphQL APIs" }
+    { name: "Web Development", icon: "💻", desc: "Full-stack web applications with modern frameworks & blazing performance." },
+    { name: "UI/UX Design", icon: "🎨", desc: "Beautiful, intuitive interfaces with smooth animations and accessibility." },
+    { name: "AI Integration", icon: "🧠", desc: "Smart AI solutions powered by GPT, TensorFlow and custom models." },
+    { name: "API Architecture", icon: "🔗", desc: "Scalable, secure RESTful & GraphQL APIs with real-time capabilities." }
   ];
   const servicesGrid = document.getElementById('servicesGrid');
   servicesGrid.innerHTML = servicesArr.map(s => `
@@ -619,36 +687,37 @@
     </div>
   `).join('');
   
-  // Progress fill animation
+  // animate skill bars on view
   const skillBars = document.querySelectorAll('.skill-progress-fill');
   const progressObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => { if(entry.isIntersecting) { entry.target.style.width = '90%'; progressObserver.unobserve(entry.target); } });
-  }, { threshold: 0.6 });
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.style.width = '92%'; progressObserver.unobserve(entry.target); } });
+  }, { threshold: 0.5 });
   skillBars.forEach(bar => progressObserver.observe(bar));
   
-  // Scroll progress bar
-  window.addEventListener('scroll', () => {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
-    document.getElementById('scrollProgress').style.width = scrolled + '%';
-  });
-  
-  
-  
-  // Contact form
+  // contact submission
   document.getElementById('contactForm').addEventListener('submit', (e) => {
     e.preventDefault();
     alert("✨ Message sent successfully! I'll get back to you within 24 hours.");
     e.target.reset();
   });
   
-  // Initial reveal for elements already in view
-  setTimeout(() => {
-    document.querySelectorAll('.fade-up').forEach(el => { 
-      if(el.getBoundingClientRect().top < window.innerHeight-100) el.classList.add('visible'); 
+  // theme toggle (light/dark simplistic warm)
+  let darkMode = true;
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    darkMode = !darkMode;
+    document.body.style.backgroundColor = darkMode ? '#0a0a0a' : '#faf6ef';
+    document.body.style.color = darkMode ? '#f5f5f0' : '#1f1a12';
+    document.querySelectorAll('.glass-card').forEach(c => {
+      if (darkMode) c.style.background = 'rgba(20, 15, 10, 0.65)';
+      else c.style.background = 'rgba(245, 240, 228, 0.8)';
     });
-  }, 200);
+    document.getElementById('themeToggle').innerHTML = darkMode ? '🌙' : '☀️';
+  });
+  
+  // initial visible fade-ups
+  setTimeout(() => {
+    document.querySelectorAll('.fade-up').forEach(el => { if(el.getBoundingClientRect().top < window.innerHeight-100) el.classList.add('visible'); });
+  }, 150);
 </script>
 </body>
 </html>
