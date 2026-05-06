@@ -282,12 +282,12 @@
     /* Responsive adjustment for mobile */
     @media (max-width: 640px) {
       .contact-oval {
-        padding: 10px 20px;
-        font-size: 1rem;
-        gap: 8px;
+        padding: 10px 12px;
+        font-size: 0.85rem;
+        gap: 6px;
       }
       .contact-oval span {
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
     }
     
@@ -322,101 +322,216 @@
       color: #f59e0b;
     }
     
-    /* ===== NEW NAVIGATION BAR STYLES ===== */
-    .navbar {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1000;
-      background: rgba(10, 10, 10, 0.75);
-      backdrop-filter: blur(16px);
-      border-radius: 60px;
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      padding: 8px 24px;
-      transition: all 0.3s ease;
-      width: auto;
-      max-width: 90vw;
-    }
-    
-    .navbar.scrolled-nav {
-      top: 10px;
-      background: rgba(10, 10, 10, 0.92);
-      border-color: rgba(245, 158, 11, 0.6);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(245, 158, 11, 0.15);
-    }
-    
-    .nav-links {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    
-    .nav-link {
-      position: relative;
-      padding: 8px 18px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: #e5e5e5;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      border-radius: 40px;
-      letter-spacing: 0.3px;
-      cursor: pointer;
-    }
-    
-    .nav-link:hover {
-      color: #f59e0b;
-      background: rgba(245, 158, 11, 0.12);
-      transform: translateY(-1px);
-    }
-    
-    .nav-link.active {
-      color: #f59e0b;
-      background: rgba(245, 158, 11, 0.18);
-      border: 1px solid rgba(245, 158, 11, 0.4);
-    }
-    
-    /* Navbar animation on load */
-    @keyframes slideDown {
-      0% {
+    /* ===== DESKTOP NAVIGATION BAR (appears on scroll, ONLY on desktop) ===== */
+    @media (min-width: 769px) {
+      .quick-nav {
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(-120px);
+        z-index: 1000;
+        background: rgba(10, 10, 10, 0.85);
+        backdrop-filter: blur(20px);
+        border-radius: 60px;
+        border: 1px solid rgba(245, 158, 11, 0.4);
+        padding: 8px 20px;
+        transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        width: auto;
+        max-width: 90vw;
         opacity: 0;
-        transform: translateX(-50%) translateY(-30px);
+        visibility: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       }
-      100% {
-        opacity: 1;
+      
+      .quick-nav.visible {
         transform: translateX(-50%) translateY(0);
+        opacity: 1;
+        visibility: visible;
       }
-    }
-    
-    .navbar {
-      animation: slideDown 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    }
-    
-    /* Mobile responsive nav */
-    @media (max-width: 768px) {
-      .navbar {
-        padding: 6px 16px;
+      
+      .quick-nav.scrolled-nav {
         top: 12px;
+        background: rgba(8, 8, 8, 0.95);
+        border-color: rgba(245, 158, 11, 0.7);
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(245, 158, 11, 0.2);
       }
-      .nav-link {
-        padding: 6px 12px;
-        font-size: 0.75rem;
+      
+      .nav-items {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        justify-content: center;
       }
-      .nav-links {
-        gap: 4px;
+      
+      .nav-item {
+        position: relative;
+        padding: 7px 16px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #e0e0e0;
+        text-decoration: none;
+        transition: all 0.25s ease;
+        border-radius: 40px;
+        letter-spacing: 0.3px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      
+      .nav-item:hover {
+        color: #f59e0b;
+        background: rgba(245, 158, 11, 0.12);
+        transform: translateY(-1px);
+      }
+      
+      .nav-item.active {
+        color: #f59e0b;
+        background: rgba(245, 158, 11, 0.2);
+        border: 1px solid rgba(245, 158, 11, 0.5);
+      }
+      
+      /* Hide mobile elements on desktop */
+      .menu-btn,
+      .drawer-overlay,
+      .mobile-drawer {
+        display: none !important;
       }
     }
     
-    @media (max-width: 480px) {
-      .nav-link {
-        padding: 4px 10px;
-        font-size: 0.7rem;
+    /* ===== MOBILE DRAWER STYLES (ONLY on screens up to 768px) ===== */
+    @media (max-width: 768px) {
+      /* Hide desktop nav on mobile */
+      .quick-nav {
+        display: none !important;
       }
-      .navbar {
-        padding: 6px 12px;
+      
+      /* Menu Button */
+      .menu-btn {
+        position: fixed;
+        top: 16px;
+        right: 70px;
+        width: 45px;
+        height: 45px;
+        background: rgba(10, 10, 10, 0.85);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(245, 158, 11, 0.5);
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        z-index: 1002;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
       }
+      
+      .menu-btn:hover {
+        transform: scale(1.05);
+        border-color: #f59e0b;
+        background: rgba(245, 158, 11, 0.2);
+      }
+      
+      .menu-btn span {
+        width: 22px;
+        height: 2px;
+        background: #f59e0b;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+      
+      .menu-btn.open span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      
+      .menu-btn.open span:nth-child(2) {
+        opacity: 0;
+      }
+      
+      .menu-btn.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+      
+      /* Drawer Overlay */
+      .drawer-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+      
+      .drawer-overlay.open {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      /* Drawer Sidebar */
+      .mobile-drawer {
+        position: fixed;
+        top: 0;
+        right: -280px;
+        width: 260px;
+        height: 100vh;
+        background: rgba(8, 8, 8, 0.98);
+        backdrop-filter: blur(20px);
+        border-left: 1px solid rgba(245, 158, 11, 0.4);
+        z-index: 1001;
+        transition: right 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        display: flex;
+        flex-direction: column;
+        padding: 80px 20px 30px;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+      }
+      
+      .mobile-drawer.open {
+        right: 0;
+      }
+      
+      .drawer-items {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .drawer-item {
+        padding: 12px 20px;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #e0e0e0;
+        text-decoration: none;
+        transition: all 0.25s ease;
+        border-radius: 50px;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        text-align: center;
+        background: rgba(245, 158, 11, 0.05);
+        border: 1px solid rgba(245, 158, 11, 0.2);
+      }
+      
+      .drawer-item:hover {
+        color: #f59e0b;
+        background: rgba(245, 158, 11, 0.15);
+        transform: translateX(-5px);
+        border-color: rgba(245, 158, 11, 0.5);
+      }
+      
+      .drawer-item.active {
+        color: #f59e0b;
+        background: rgba(245, 158, 11, 0.25);
+        border: 1px solid rgba(245, 158, 11, 0.7);
+      }
+    }
+    
+    /* Smooth scroll offset fix */
+    html {
+      scroll-padding-top: 80px;
     }
   </style>
 </head>
@@ -426,18 +541,33 @@
 <canvas id="heroCanvas"></canvas>
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- ===== NEW NAVIGATION BAR ===== -->
-<nav class="navbar" id="navbar">
-  <div class="nav-links">
-    <a class="nav-link" data-section="about">من أنا</a>
-    <a class="nav-link" data-section="projects">مشاريعي</a>
-    <a class="nav-link" data-section="skills">أعمل في</a>
-    <a class="nav-link" data-section="services">الخدمات</a>
-    <a class="nav-link" data-section="contact">تواصل معي</a>
+<!-- ===== DESKTOP NAVIGATION (ONLY on tablets/desktop) ===== -->
+<nav class="quick-nav" id="quickNav">
+  <div class="nav-items">
+    <a class="nav-item" data-section="about">من أنا</a>
+     <a class="nav-item" data-section="skills">أعمل في</a>
+    <a class="nav-item" data-section="projects">مشاريعي</a>
+    <a class="nav-item" data-section="services">مسيرتي</a>
+    <a class="nav-item" data-section="contact">تواصل معي</a>
   </div>
 </nav>
 
-
+<!-- ===== MOBILE DRAWER ELEMENTS (ONLY on phones, hidden on desktop) ===== -->
+<div class="menu-btn" id="menuBtn">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-items">
+    <a class="drawer-item" data-section="about">من أنا</a>
+    <a class="drawer-item" data-section="skills">أعمل في</a>
+    <a class="drawer-item" data-section="projects">مشاريعي</a>
+    <a class="drawer-item" data-section="services">مسيرتي</a>
+    <a class="drawer-item" data-section="contact">تواصل معي</a>
+  </div>
+</div>
 
 <main class="relative">
   <!-- HERO SECTION -->
@@ -568,7 +698,7 @@
         </form>
         
         <!-- CONTACT BUTTONS - OVAL STYLE -->
-        <div class="flex flex-wrap justify-center gap-5 mt-10">
+        <div class="flex flex-wrap justify-center gap-3 mt-10">
           <a href="https://wa.me/962787297364" class="contact-oval">
             <span>📞</span> WhatsApp
           </a>
@@ -683,7 +813,7 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
   
-  // scroll progress + canvas fade + navbar style
+  // scroll progress + canvas fade + quick nav visibility (desktop only)
   window.addEventListener('scroll', () => {
     const scrolled = window.scrollY;
     const fadeStart = 60;
@@ -698,21 +828,29 @@
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     document.getElementById('scrollProgress').style.width = (winScroll / height) * 100 + '%';
     
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    if (scrolled > 50) {
-      navbar.classList.add('scrolled-nav');
-    } else {
-      navbar.classList.remove('scrolled-nav');
+    // Desktop nav visibility logic (only if element exists - on desktop)
+    const quickNav = document.getElementById('quickNav');
+    if (quickNav && window.innerWidth > 768) {
+      if (scrolled > 150) {
+        quickNav.classList.add('visible');
+        if (scrolled > 200) {
+          quickNav.classList.add('scrolled-nav');
+        } else {
+          quickNav.classList.remove('scrolled-nav');
+        }
+      } else {
+        quickNav.classList.remove('visible');
+        quickNav.classList.remove('scrolled-nav');
+      }
     }
     
-    // Update active nav link based on scroll position
+    // Update active nav link for both desktop and mobile
     const sections = ['about', 'skills', 'projects', 'services', 'contact'];
     let current = '';
     sections.forEach(section => {
       const element = document.getElementById(section);
       if (element) {
-        const offset = 100;
+        const offset = 120;
         const rect = element.getBoundingClientRect();
         if (rect.top <= offset && rect.bottom >= offset) {
           current = section;
@@ -720,13 +858,75 @@
       }
     });
     
-    document.querySelectorAll('.nav-link').forEach(link => {
+    // Desktop nav active
+    document.querySelectorAll('.nav-item').forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('data-section') === current) {
+        link.classList.add('active');
+      }
+    });
+    
+    // Mobile drawer active
+    document.querySelectorAll('.drawer-item').forEach(link => {
       link.classList.remove('active');
       if (link.getAttribute('data-section') === current) {
         link.classList.add('active');
       }
     });
   });
+  
+  // Mobile drawer functions (only executed on mobile)
+  const menuBtn = document.getElementById('menuBtn');
+  const drawerOverlay = document.getElementById('drawerOverlay');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+  
+  if (menuBtn && drawerOverlay && mobileDrawer) {
+    function openDrawer() {
+      mobileDrawer.classList.add('open');
+      drawerOverlay.classList.add('open');
+      menuBtn.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeDrawer() {
+      mobileDrawer.classList.remove('open');
+      drawerOverlay.classList.remove('open');
+      menuBtn.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (mobileDrawer.classList.contains('open')) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
+    });
+    
+    drawerOverlay.addEventListener('click', closeDrawer);
+    
+    // Mobile drawer item clicks
+    document.querySelectorAll('.drawer-item').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('data-section');
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          closeDrawer();
+          setTimeout(() => {
+            const offset = 70;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - offset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }, 300);
+        }
+      });
+    });
+  }
   
   gsap.registerPlugin(ScrollTrigger);
   
@@ -872,14 +1072,14 @@
   });
   
   
-  // Navbar click handler - smooth scroll
-  document.querySelectorAll('.nav-link').forEach(link => {
+  // Desktop nav click handler - smooth scroll with offset
+  document.querySelectorAll('.nav-item').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = link.getAttribute('data-section');
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
-        const offset = 80;
+        const offset = 70;
         const elementPosition = targetElement.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - offset;
         window.scrollTo({
