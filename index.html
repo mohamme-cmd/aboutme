@@ -466,6 +466,43 @@
       font-size: 3.5rem;
       border-bottom: 1px solid var(--border);
     }
+    .project-thumb.has-image {
+      display: block;
+      height: auto;
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+    .project-preview-main {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      border: 1px solid rgba(56,189,248,0.22);
+      object-fit: cover;
+      display: block;
+      background: var(--bg);
+      box-shadow: 0 18px 45px rgba(56,189,248,0.12);
+    }
+    .project-preview-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(56px, 1fr));
+      gap: 0.5rem;
+      margin-top: 0.65rem;
+    }
+    .project-preview-strip img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 8px;
+      border: 1px solid rgba(99,102,241,0.24);
+      object-fit: cover;
+      display: block;
+      opacity: 0.82;
+      transition: opacity 0.2s, transform 0.2s, border-color 0.2s;
+    }
+    .project-preview-strip img:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+      border-color: var(--accent3);
+    }
     .project-body { padding: 1.5rem; }
     .project-title {
       font-size: 1.1rem;
@@ -505,6 +542,115 @@
       transition: color 0.2s;
     }
     .project-link:hover { color: var(--accent2); }
+    .project-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: rgba(2, 6, 12, 0.82);
+      backdrop-filter: blur(14px);
+    }
+    .project-modal.open { display: flex; }
+    .project-modal-content {
+      width: min(1040px, 100%);
+      max-height: 92vh;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 28px 90px rgba(0, 0, 0, 0.55);
+    }
+    .project-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .project-modal-title {
+      font-size: 1rem;
+      color: var(--white);
+      font-weight: 700;
+    }
+    .project-modal-close,
+    .project-modal-nav {
+      border: 1px solid var(--border);
+      background: rgba(99,102,241,0.08);
+      color: var(--text);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .project-modal-close {
+      width: 38px;
+      height: 38px;
+      font-size: 1.2rem;
+    }
+    .project-modal-close:hover,
+    .project-modal-nav:hover {
+      border-color: var(--accent);
+      color: var(--accent2);
+      background: rgba(99,102,241,0.16);
+    }
+    .project-modal-stage {
+      position: relative;
+      background: #030711;
+      padding: 1rem;
+    }
+    .project-modal-image {
+      width: 100%;
+      max-height: 62vh;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      display: block;
+      border-radius: 12px;
+      background: var(--bg);
+      border: 1px solid rgba(99,102,241,0.18);
+    }
+    .project-modal-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      font-size: 1.6rem;
+    }
+    .project-modal-prev { left: 1.7rem; }
+    .project-modal-next { right: 1.7rem; }
+    .project-modal-thumbs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
+      gap: 0.65rem;
+      padding: 1rem;
+      border-top: 1px solid var(--border);
+      background: rgba(10,10,15,0.68);
+    }
+    .project-modal-thumb {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: transparent;
+      padding: 0.25rem;
+      cursor: pointer;
+      opacity: 0.68;
+      transition: opacity 0.2s, transform 0.2s, border-color 0.2s;
+    }
+    .project-modal-thumb.active,
+    .project-modal-thumb:hover {
+      opacity: 1;
+      transform: translateY(-2px);
+      border-color: var(--accent3);
+    }
+    .project-modal-thumb img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      display: block;
+      border-radius: 7px;
+    }
 
     /* ── SERVICES ── */
     #services { padding: 6rem; background: var(--bg2); }
@@ -582,7 +728,19 @@
       transition: border-color 0.2s;
     }
     .contact-item:hover { border-color: var(--accent); }
-    .contact-item-icon { font-size: 1.2rem; }
+    .contact-item-icon {
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contact-item-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
     .contact-item-info { display: flex; flex-direction: column; gap: 0.1rem; }
     .contact-item-label {
       font-family: var(--font-mono);
@@ -859,13 +1017,6 @@
   <div class="blob blob-2"></div>
   <div class="blob blob-3"></div>
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-sans);
-  overflow-x: hidden;
-
-  
   <!-- Progress bar -->
   <div class="progress-bar" id="progressBar"></div>
 
@@ -1013,42 +1164,79 @@ body {
 
     <div class="projects-grid fade-in">
       <div class="project-card">
-        <div class="project-thumb">🌐</div>
+        <div class="project-thumb has-image">
+          <img class="project-preview-main" src="assets/portfolio-hero.svg" alt="Personal portfolio hero section screenshot">
+          <div class="project-preview-strip" aria-label="Personal portfolio screenshots">
+            <img src="assets/portfolio-hero.svg" alt="Personal portfolio hero section">
+            <img src="assets/portfolio-about.svg" alt="Personal portfolio about section">
+            <img src="assets/portfolio-skills-projects.svg" alt="Personal portfolio skills and projects section">
+            <img src="assets/portfolio-timeline-services.svg" alt="Personal portfolio timeline and services section">
+          </div>
+        </div>
         <div class="project-body">
           <div class="project-title">Personal Portfolio</div>
-          <div class="project-desc">Personal website built with Next.js featuring smooth animations, dark theme, and a clean developer aesthetic.</div>
+          <div class="project-desc">Interactive personal portfolio with bold orange-on-black visuals, animated developer details, sections for skills, projects, experience, and services.</div>
           <div class="project-tags">
-            <span class="tag">Next.js</span><span class="tag">Tailwind</span><span class="tag">Framer</span>
+            <span class="tag">Portfolio</span><span class="tag">Animations</span><span class="tag">UI Engineer</span>
           </div>
-          <a href="#" class="project-link">View Project →</a>
+          <a href="#" class="project-link" data-project="portfolio">View Project →</a>
         </div>
       </div>
       <div class="project-card">
-        <div class="project-thumb">🛒</div>
-        <div class="project-body">
-          <div class="project-title">E-Commerce Platform</div>
-          <div class="project-desc">Full-stack e-commerce solution with authentication, cart management, payments, and admin dashboard.</div>
-          <div class="project-tags">
-            <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span>
+        <div class="project-thumb has-image">
+          <img class="project-preview-main" src="assets/tryjo-home.svg" alt="TRY JO store homepage screenshot">
+          <div class="project-preview-strip" aria-label="TRY JO store screenshots">
+            <img src="assets/tryjo-home.svg" alt="TRY JO homepage">
+            <img src="assets/tryjo-products.svg" alt="TRY JO products page">
+            <img src="assets/tryjo-login.svg" alt="TRY JO login modal">
           </div>
-          <a href="#" class="project-link">View Project →</a>
+        </div>
+        <div class="project-body">
+          <div class="project-title">TRY JO E-Commerce Store</div>
+          <div class="project-desc">Luxury Arabic e-commerce experience with product browsing, authentication flow, refined dark UI, and responsive shopping pages.</div>
+          <div class="project-tags">
+            <span class="tag">React</span><span class="tag">Arabic UI</span><span class="tag">E-Commerce</span>
+          </div>
+          <a href="#" class="project-link" data-project="tryjo">View Project →</a>
         </div>
       </div>
       <div class="project-card">
-        <div class="project-thumb">📊</div>
-        <div class="project-body">
-          <div class="project-title">Analytics Dashboard</div>
-          <div class="project-desc">Real-time analytics dashboard with interactive charts, data visualization, and live data streams.</div>
-          <div class="project-tags">
-            <span class="tag">Next.js</span><span class="tag">PostgreSQL</span><span class="tag">Redis</span>
+        <div class="project-thumb has-image">
+          <img class="project-preview-main" src="assets/atp-security-overview.svg" alt="ATP Security dashboard overview screenshot">
+          <div class="project-preview-strip" aria-label="ATP Security dashboard screenshots">
+            <img src="assets/atp-security-overview.svg" alt="ATP Security overview page">
+            <img src="assets/atp-security-status.svg" alt="ATP Security system status page">
+            <img src="assets/atp-security-live.svg" alt="ATP Security live monitoring page">
           </div>
-          <a href="#" class="project-link">View Project →</a>
+        </div>
+        <div class="project-body">
+          <div class="project-title">ATP Security Dashboard</div>
+          <div class="project-desc">Arabic security control panel with live monitoring, system status metrics, threat tracking, charts, and protected admin navigation.</div>
+          <div class="project-tags">
+            <span class="tag">Dashboard</span><span class="tag">Charts</span><span class="tag">Security UI</span>
+          </div>
+          <a href="#" class="project-link" data-project="atp">View Project →</a>
         </div>
       </div>
     </div>
   </section>
 
   <div class="divider"></div>
+
+  <div class="project-modal" id="projectModal" aria-hidden="true">
+    <div class="project-modal-content" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+      <div class="project-modal-header">
+        <div class="project-modal-title" id="projectModalTitle">Project Gallery</div>
+        <button class="project-modal-close" type="button" aria-label="Close gallery">×</button>
+      </div>
+      <div class="project-modal-stage">
+        <button class="project-modal-nav project-modal-prev" type="button" aria-label="Previous image">‹</button>
+        <img class="project-modal-image" id="projectModalImage" src="" alt="">
+        <button class="project-modal-nav project-modal-next" type="button" aria-label="Next image">›</button>
+      </div>
+      <div class="project-modal-thumbs" id="projectModalThumbs"></div>
+    </div>
+  </div>
 
   <!-- SERVICES -->
   <section id="services">
@@ -1091,28 +1279,62 @@ body {
         <h3>Have a project idea or collaboration?</h3>
         <p>Let's talk. I'm always open to discussing new opportunities, creative ideas, or ways to help you build something great.</p>
         <div class="contact-links">
-<a href="mailto:mohmmedalmomani3@gmail.com"  class="contact-item"> <span class="contact-item-icon">📧</span>
+<a href="mailto:mohmmedalmomani3@gmail.com"  class="contact-item"> <span class="contact-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" role="img">
+                <path fill="#4285F4" d="M45 16.2v25.3c0 1.4-1.1 2.5-2.5 2.5h-7.2V27.8L45 16.2z"/>
+                <path fill="#34A853" d="M12.7 44H5.5C4.1 44 3 42.9 3 41.5V16.2l9.7 11.6V44z"/>
+                <path fill="#FBBC04" d="M45 10.5v5.7L35.3 27.8 24 36.2 12.7 27.8 3 16.2v-5.7C3 8.3 5.5 7 7.3 8.3L24 20.8 40.7 8.3c1.8-1.3 4.3 0 4.3 2.2z"/>
+                <path fill="#EA4335" d="M12.7 27.8 3 16.2v-5.7C3 8.3 5.5 7 7.3 8.3L24 20.8 40.7 8.3c1.8-1.3 4.3 0 4.3 2.2v5.7l-9.7 11.6L24 19.4 12.7 27.8z"/>
+              </svg>
+            </span>
             <div class="contact-item-info">
               <span class="contact-item-label">Email</span>
               <span class="contact-item-value">mohmmedalmomani3@gmail.com</span>
             </div>
           </a>
           <a href="https://discord.com/users/king_momani" class="contact-item">
-            <span class="contact-item-icon">💬</span>
+            <span class="contact-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" role="img">
+                <path fill="#5865F2" d="M39.5 12.3A34.5 34.5 0 0 0 31 9.6l-.4.8c3 .9 4.4 2.1 4.4 2.1a29 29 0 0 0-13.8-1.4 33 33 0 0 0-7.1 1.4s1.5-1.3 4.7-2.2l-.3-.7a34.7 34.7 0 0 0-8.6 2.7C4.5 20.4 3 28.3 3.8 36.1c3.6 2.7 7.1 4.3 10.5 5.3l2.3-3.7c-1.3-.5-2.5-1.1-3.6-1.8l.9-.7c7 3.3 14.7 3.3 21.6 0l.9.7c-1.1.7-2.3 1.3-3.6 1.8l2.3 3.7c3.4-1 6.9-2.6 10.5-5.3.9-9.1-1.5-16.9-6.1-23.8z"/>
+                <path fill="#FFFFFF" d="M18.6 30.3c-1.7 0-3.1-1.6-3.1-3.6s1.4-3.6 3.1-3.6 3.1 1.6 3.1 3.6-1.4 3.6-3.1 3.6zm10.8 0c-1.7 0-3.1-1.6-3.1-3.6s1.4-3.6 3.1-3.6 3.1 1.6 3.1 3.6-1.4 3.6-3.1 3.6z"/>
+              </svg>
+            </span>
             <div class="contact-item-info">
               <span class="contact-item-label">Discord</span>
               <span class="contact-item-value">king_momani</span>
             </div>
           </a>
           <a href="https://wa.me/962787297364" target="_blank" class="contact-item">
-            <span class="contact-item-icon">📱</span>
+            <span class="contact-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" role="img">
+                <circle cx="24" cy="24" r="22" fill="#25D366"/>
+                <path fill="#FFFFFF" d="M34.8 28.8c-.5-.3-3-1.5-3.5-1.7-.5-.2-.9-.3-1.3.3-.4.5-1.5 1.7-1.8 2.1-.3.4-.7.4-1.2.1-.5-.3-2.2-.8-4.2-2.6-1.5-1.4-2.6-3.1-2.9-3.6-.3-.5 0-.8.3-1.1.3-.3.5-.7.8-1 .3-.3.4-.5.6-.9.2-.4.1-.7 0-1-.1-.3-1.3-3.1-1.8-4.2-.5-1.1-.9-1-1.3-1h-1.1c-.4 0-1 .1-1.6.7-.5.5-2 1.9-2 4.8 0 2.8 2.1 5.5 2.4 5.9.3.4 4.1 6.3 10 8.8 1.4.6 2.5 1 3.4 1.3 1.4.4 2.7.4 3.7.2 1.1-.2 3-1.2 3.4-2.4.4-1.2.4-2.2.3-2.4-.2-.3-.7-.4-1.2-.7z"/>
+                <path fill="#FFFFFF" d="M24 6.5A17.5 17.5 0 0 0 9.1 33.2L7 41l8-2.1A17.5 17.5 0 1 0 24 6.5zm0 31.8c-2.9 0-5.6-.9-7.9-2.4l-.6-.4-4.8 1.3 1.3-4.7-.4-.6A14.3 14.3 0 1 1 24 38.3z"/>
+              </svg>
+            </span>
             <div class="contact-item-info">
               <span class="contact-item-label">WhatsApp</span>
               <span class="contact-item-value">Send Message</span>
             </div>
           </a>
           <a href="https://www.instagram.com/7amodah_momani?igsh=MWRlcmUwdmhoODNzZA==" class="contact-item">
-            <span class="contact-item-icon">📷</span>
+            <span class="contact-item-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" role="img">
+                <defs>
+                  <radialGradient id="igGradient" cx="31%" cy="107%" r="112%">
+                    <stop offset="0" stop-color="#FEDA75"/>
+                    <stop offset=".25" stop-color="#FA7E1E"/>
+                    <stop offset=".52" stop-color="#D62976"/>
+                    <stop offset=".78" stop-color="#962FBF"/>
+                    <stop offset="1" stop-color="#4F5BD5"/>
+                  </radialGradient>
+                </defs>
+                <rect x="5" y="5" width="38" height="38" rx="11" fill="url(#igGradient)"/>
+                <rect x="14" y="14" width="20" height="20" rx="6" fill="none" stroke="#fff" stroke-width="3"/>
+                <circle cx="24" cy="24" r="5.5" fill="none" stroke="#fff" stroke-width="3"/>
+                <circle cx="31.3" cy="16.8" r="2.1" fill="#fff"/>
+              </svg>
+            </span>
             <div class="contact-item-info">
               <span class="contact-item-label">Instagram</span>
               <span class="contact-item-value">7amodah_momani</span>
@@ -1185,6 +1407,108 @@ body {
       msg.style.display = 'block';
       setTimeout(() => { msg.style.display = 'none'; }, 4000);
     }
+
+    // Project image gallery
+    const projectGalleries = {
+      portfolio: {
+        title: 'Personal Portfolio',
+        images: [
+          { src: 'assets/portfolio-hero.svg', alt: 'Personal portfolio hero section' },
+          { src: 'assets/portfolio-about.svg', alt: 'Personal portfolio about section' },
+          { src: 'assets/portfolio-skills-projects.svg', alt: 'Personal portfolio skills and projects section' },
+          { src: 'assets/portfolio-timeline-services.svg', alt: 'Personal portfolio timeline and services section' }
+        ]
+      },
+      tryjo: {
+        title: 'TRY JO E-Commerce Store',
+        images: [
+          { src: 'assets/tryjo-home.svg', alt: 'TRY JO homepage' },
+          { src: 'assets/tryjo-products.svg', alt: 'TRY JO products page' },
+          { src: 'assets/tryjo-login.svg', alt: 'TRY JO login modal' }
+        ]
+      },
+      atp: {
+        title: 'ATP Security Dashboard',
+        images: [
+          { src: 'assets/atp-security-overview.svg', alt: 'ATP Security overview page' },
+          { src: 'assets/atp-security-status.svg', alt: 'ATP Security system status page' },
+          { src: 'assets/atp-security-live.svg', alt: 'ATP Security live monitoring page' }
+        ]
+      }
+    };
+
+    const projectModal = document.getElementById('projectModal');
+    const projectModalTitle = document.getElementById('projectModalTitle');
+    const projectModalImage = document.getElementById('projectModalImage');
+    const projectModalThumbs = document.getElementById('projectModalThumbs');
+    const projectModalClose = document.querySelector('.project-modal-close');
+    const projectModalPrev = document.querySelector('.project-modal-prev');
+    const projectModalNext = document.querySelector('.project-modal-next');
+    let activeProject = null;
+    let activeImageIndex = 0;
+
+    function renderProjectGallery() {
+      const gallery = projectGalleries[activeProject];
+      if (!gallery) return;
+      const image = gallery.images[activeImageIndex];
+      projectModalTitle.textContent = gallery.title;
+      projectModalImage.src = image.src;
+      projectModalImage.alt = image.alt;
+      projectModalThumbs.innerHTML = gallery.images.map((item, index) => `
+        <button class="project-modal-thumb${index === activeImageIndex ? ' active' : ''}" type="button" data-index="${index}" aria-label="Show image ${index + 1}">
+          <img src="${item.src}" alt="${item.alt}">
+        </button>
+      `).join('');
+    }
+
+    function openProjectGallery(projectKey) {
+      if (!projectGalleries[projectKey]) return;
+      activeProject = projectKey;
+      activeImageIndex = 0;
+      renderProjectGallery();
+      projectModal.classList.add('open');
+      projectModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectGallery() {
+      projectModal.classList.remove('open');
+      projectModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      projectModalImage.removeAttribute('src');
+    }
+
+    function changeProjectImage(step) {
+      const gallery = projectGalleries[activeProject];
+      if (!gallery) return;
+      activeImageIndex = (activeImageIndex + step + gallery.images.length) % gallery.images.length;
+      renderProjectGallery();
+    }
+
+    document.querySelectorAll('.project-link[data-project]').forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        openProjectGallery(link.dataset.project);
+      });
+    });
+    projectModalThumbs.addEventListener('click', event => {
+      const thumb = event.target.closest('.project-modal-thumb');
+      if (!thumb) return;
+      activeImageIndex = Number(thumb.dataset.index);
+      renderProjectGallery();
+    });
+    projectModalClose.addEventListener('click', closeProjectGallery);
+    projectModalPrev.addEventListener('click', () => changeProjectImage(-1));
+    projectModalNext.addEventListener('click', () => changeProjectImage(1));
+    projectModal.addEventListener('click', event => {
+      if (event.target === projectModal) closeProjectGallery();
+    });
+    window.addEventListener('keydown', event => {
+      if (!projectModal.classList.contains('open')) return;
+      if (event.key === 'Escape') closeProjectGallery();
+      if (event.key === 'ArrowLeft') changeProjectImage(-1);
+      if (event.key === 'ArrowRight') changeProjectImage(1);
+    });
 
     // Smooth active nav link
     const sections = document.querySelectorAll('section[id]');
