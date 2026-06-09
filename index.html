@@ -8,7 +8,7 @@
   <meta name="description" content="Mohammed Almomani is a Full-Stack Web Developer specializing in scalable web platforms, backend architectures, and modern web applications." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <style>
    
     html {
@@ -36,6 +36,7 @@
       --white: #ffffff;
       --font-mono: 'Space Mono', monospace;
       --font-sans: 'Syne', sans-serif;
+      --font-ar: 'Cairo', 'Tahoma', 'Arial', sans-serif;
     }
 
    html {
@@ -49,8 +50,67 @@
       font-family: var(--font-sans);
       overflow-x: hidden;
     }
+    html[lang="ar"] body,
+    html[lang="ar"] .nav-links a,
+    html[lang="ar"] .hero-tagline,
+    html[lang="ar"] .project-desc,
+    html[lang="ar"] .service-desc,
+    html[lang="ar"] .contact-info p,
+    html[lang="ar"] .form-label,
+    html[lang="ar"] .form-input,
+    html[lang="ar"] .footer-copy {
+      font-family: var(--font-ar);
+      letter-spacing: 0;
+    }
+    html[lang="ar"] .hero-name,
+    html[lang="ar"] .section-title,
+    html[lang="ar"] .project-title,
+    html[lang="ar"] .service-title,
+    html[lang="ar"] .contact-info h3 {
+      font-family: var(--font-ar);
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+    html[lang="ar"] #skills,
+    html[lang="ar"] #skills .section-label,
+    html[lang="ar"] #skills .section-title,
+    html[lang="ar"] #skills > p,
+    html[lang="ar"] .tab-btn,
+    html[lang="ar"] .skill-name {
+      font-family: var(--font-sans);
+    }
+    html[lang="ar"] .skill-name,
+    html[lang="ar"] .tab-btn {
+      letter-spacing: 0.05em;
+    }
+    html[lang="ar"] .stat-label {
+      font-family: var(--font-ar);
+      font-size: 0.92rem;
+      font-weight: 800;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.78);
+      letter-spacing: 0;
+    }
+    html[lang="ar"] #projects > p {
+      font-family: var(--font-ar);
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 2;
+      color: rgba(255, 255, 255, 0.8);
+      letter-spacing: 0;
+    }
+    html[lang="ar"] .hero-actions .btn-primary,
+    html[lang="ar"] .hero-actions .btn-outline {
+      font-family: var(--font-ar);
+      font-size: 1.02rem;
+      font-weight: 900;
+      line-height: 1.4;
+      letter-spacing: 0;
+      min-height: 52px;
+      padding-inline: 1.65rem;
+    }
 
-    /* ── NOISE OVERLAY ── */
+    /* â”€â”€ NOISE OVERLAY â”€â”€ */
     body::before {
       content: '';
       position: fixed;
@@ -61,7 +121,7 @@
       opacity: 0.4;
     }
 
-    /* ── GLOW BLOBS ── */
+    /* â”€â”€ GLOW BLOBS â”€â”€ */
     .blob {
       position: fixed;
       border-radius: 50%;
@@ -73,7 +133,7 @@
     .blob-2 { width: 500px; height: 500px; background: rgba(56,189,248,0.08); bottom: 20%; right: -150px; }
     .blob-3 { width: 400px; height: 400px; background: rgba(129,140,248,0.07); top: 50%; left: 30%; }
 
-    /* ── NAVBAR ── */
+    /* â”€â”€ NAVBAR â”€â”€ */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -121,12 +181,20 @@
       border: 1px solid var(--border);
       border-radius: 999px;
       color: var(--muted);
+      cursor: pointer;
+      user-select: none;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .nav-tag:hover {
+      border-color: var(--accent);
+      color: var(--accent2);
+      background: rgba(99,102,241,0.08);
     }
 
-    /* ── SECTIONS ── */
+    /* â”€â”€ SECTIONS â”€â”€ */
     section { position: relative; z-index: 1; }
 
-    /* ── HERO ── */
+    /* â”€â”€ HERO â”€â”€ */
     #home {
       min-height: 100vh;
       display: flex;
@@ -308,7 +376,7 @@
       white-space: nowrap;
     }
 
-    /* ── DIVIDER ── */
+    /* â”€â”€ DIVIDER â”€â”€ */
     .divider {
       width: 100%;
       height: 1px;
@@ -316,7 +384,7 @@
       margin: 0 auto;
     }
 
-    /* ── ABOUT ── */
+    /* â”€â”€ ABOUT â”€â”€ */
     #about {
       padding: 6rem;
     }
@@ -386,7 +454,7 @@
       line-height: 1.6;
     }
 
-    /* ── SKILLS ── */
+    /* â”€â”€ SKILLS â”€â”€ */
     #skills { padding: 6rem; background: var(--bg2); }
 
     .skills-tabs {
@@ -437,20 +505,77 @@
       color: var(--text);
     }
 
-    /* ── PROJECTS ── */
+    /* â”€â”€ PROJECTS â”€â”€ */
     #projects { padding: 6rem; }
 
     .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      display: flex;
       gap: 1.5rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      padding: 0.25rem 0.2rem 1.4rem;
+    }
+    .projects-grid::-webkit-scrollbar {
+      display: none;
+    }
+    .projects-carousel {
+      position: relative;
+    }
+    .projects-carousel-actions {
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      position: absolute;
+      left: -1.25rem;
+      right: -1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+    }
+    .projects-arrow {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(10,10,15,0.9);
+      color: var(--text);
+      cursor: pointer;
+      pointer-events: auto;
+      box-shadow: 0 14px 42px rgba(0,0,0,0.35);
+      transition: transform 0.2s, border-color 0.2s, color 0.2s, background 0.2s;
+      display: grid;
+      place-items: center;
+    }
+    .arrow-icon {
+      display: block;
+      width: 12px;
+      height: 12px;
+      border-top: 2px solid currentColor;
+      border-right: 2px solid currentColor;
+    }
+    .arrow-left { transform: rotate(-135deg); }
+    .arrow-right { transform: rotate(45deg); }
+    .projects-arrow:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      color: var(--accent2);
+      background: rgba(99,102,241,0.16);
+    }
+    .projects-grid.is-sliding .project-card {
+      opacity: 0.72;
+      transform: scale(0.97);
     }
     .project-card {
+      flex: 0 0 calc((100% - 3rem) / 3);
+      min-width: 300px;
+      scroll-snap-align: start;
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 16px;
       overflow: hidden;
-      transition: all 0.25s;
+      transition: all 0.35s ease;
     }
     .project-card:hover {
       border-color: var(--accent);
@@ -584,11 +709,32 @@
       border-radius: 10px;
       cursor: pointer;
       transition: border-color 0.2s, color 0.2s, background 0.2s;
+      display: grid;
+      place-items: center;
     }
     .project-modal-close {
       width: 38px;
       height: 38px;
-      font-size: 1.2rem;
+    }
+    .close-icon {
+      position: relative;
+      width: 16px;
+      height: 16px;
+      display: block;
+    }
+    .close-icon::before,
+    .close-icon::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+      height: 16px;
+      background: currentColor;
+      border-radius: 999px;
+    }
+    .close-icon::before { transform: translateX(-50%) rotate(45deg); }
+    .close-icon::after { transform: translateX(-50%) rotate(-45deg); }
     }
     .project-modal-close:hover,
     .project-modal-nav:hover {
@@ -617,7 +763,6 @@
       transform: translateY(-50%);
       width: 44px;
       height: 44px;
-      font-size: 1.6rem;
     }
     .project-modal-prev { left: 1.7rem; }
     .project-modal-next { right: 1.7rem; }
@@ -652,7 +797,7 @@
       border-radius: 7px;
     }
 
-    /* ── SERVICES ── */
+    /* â”€â”€ SERVICES â”€â”€ */
     #services { padding: 6rem; background: var(--bg2); }
 
     .services-grid {
@@ -689,7 +834,7 @@
       line-height: 1.7;
     }
 
-    /* ── CONTACT ── */
+    /* â”€â”€ CONTACT â”€â”€ */
     #contact { padding: 6rem; }
 
     .contact-grid {
@@ -788,7 +933,7 @@
     .form-input:focus { border-color: var(--accent); }
     textarea.form-input { resize: vertical; min-height: 130px; }
 
-    /* ── FOOTER ── */
+    /* â”€â”€ FOOTER â”€â”€ */
     footer {
       border-top: 1px solid var(--border);
       padding: 2rem 6rem;
@@ -806,7 +951,7 @@
       gap: 0.8rem;
     }
 
-    /* ── SCROLL ANIMATIONS ── */
+    /* â”€â”€ SCROLL ANIMATIONS â”€â”€ */
     .fade-in {
       opacity: 0;
       transform: translateY(30px);
@@ -817,7 +962,7 @@
       transform: translateY(0);
     }
 
-   /* ── RESPONSIVE MOBILE IMPROVEMENTS ── */
+   /* â”€â”€ RESPONSIVE MOBILE IMPROVEMENTS â”€â”€ */
 @media (max-width: 900px) {
 
   #home {
@@ -912,7 +1057,17 @@
   }
 
   .projects-grid {
-    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .project-card {
+    flex-basis: 100%;
+    min-width: 100%;
+  }
+
+  .projects-carousel-actions {
+    left: 0.4rem;
+    right: 0.4rem;
   }
 
   .services-grid {
@@ -939,7 +1094,7 @@
   }
 }
 
-/* ── EXTRA SMALL DEVICES ── */
+/* â”€â”€ EXTRA SMALL DEVICES â”€â”€ */
 @media (max-width: 600px) {
 
   .hero-name {
@@ -986,7 +1141,7 @@
       .nav-links { display: none; }
     }
 
-    /* ── TYPED CURSOR ── */
+    /* â”€â”€ TYPED CURSOR â”€â”€ */
     .typed-cursor {
       display: inline-block;
       width: 3px;
@@ -998,7 +1153,7 @@
     }
     @keyframes blink { 50% { opacity: 0; } }
 
-    /* ── PROGRESS BAR ── */
+    /* â”€â”€ PROGRESS BAR â”€â”€ */
     .progress-bar {
       position: fixed;
       top: 0; left: 0;
@@ -1031,7 +1186,7 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <span class="nav-tag">🇯🇴 EN</span>
+    <span class="nav-tag" id="languageToggle" role="button" tabindex="0" aria-label="Toggle language">EN</span>
   </nav>
 
   <!-- HERO -->
@@ -1060,7 +1215,7 @@
         </div>
       </div>
       <div class="hero-actions">
-        <a href="#contact" class="btn-primary">Contact Me →</a>
+        <a href="#contact" class="btn-primary">Contact Me â†’</a>
         <a href="#projects" class="btn-outline">View Projects</a>
       </div>
       <div class="hero-socials">
@@ -1081,7 +1236,7 @@
     <div class="hero-image-wrap">
       <div class="hero-avatar">
 <img src="photo.jpg" alt="Mohammed Almomani" style="width:100%; height:100%; object-fit:cover;">      </div>
-      <div class="hero-badge">✦ Open to Opportunities</div>
+      <div class="hero-badge">âœ¦ Open to Opportunities</div>
     </div>
   </section>
 
@@ -1100,19 +1255,19 @@
       </div>
       <div class="about-cards fade-in">
         <div class="about-card">
-          <h4>📍 Location</h4>
-          <p>Based in Jordan — Available for remote work worldwide.</p>
+          <h4>ðŸ“ Location</h4>
+          <p>Based in Jordan â€” Available for remote work worldwide.</p>
         </div>
         <div class="about-card">
-          <h4>🎓 Education</h4>
+          <h4>ðŸŽ“ Education</h4>
           <p>Computer Science background combined with advanced programming skills and continuous self-learning.</p>
         </div>
         <div class="about-card">
-          <h4>💼 Professional Work</h4>
+          <h4>ðŸ’¼ Professional Work</h4>
           <p>Full-Stack Developer delivering high-quality web applications and digital solutions for clients globally.</p>
         </div>
         <div class="about-card">
-          <h4>🚀 Mission</h4>
+          <h4>ðŸš€ Mission</h4>
           <p>Crafting clean, scalable code that solves real problems and delivers great user experiences.</p>
         </div>
       </div>
@@ -1162,7 +1317,12 @@
     <h2 class="section-title fade-in">Projects</h2>
     <p style="font-family:var(--font-mono);font-size:0.85rem;color:var(--muted);margin-bottom:2.5rem;">Some of the applications I have built using modern technologies.</p>
 
-    <div class="projects-grid fade-in">
+    <div class="projects-carousel fade-in">
+      <div class="projects-carousel-actions" aria-label="Project navigation">
+        <button class="projects-arrow projects-prev" type="button" aria-label="Previous projects"><span class="arrow-icon arrow-left" aria-hidden="true"></span></button>
+        <button class="projects-arrow projects-next" type="button" aria-label="Next projects"><span class="arrow-icon arrow-right" aria-hidden="true"></span></button>
+      </div>
+      <div class="projects-grid" id="projectsGrid">
       <div class="project-card">
         <div class="project-thumb has-image">
           <img class="project-preview-main" src="assets/portfolio-hero.svg" alt="Personal portfolio hero section screenshot">
@@ -1179,7 +1339,7 @@
           <div class="project-tags">
             <span class="tag">Portfolio</span><span class="tag">Animations</span><span class="tag">UI Engineer</span>
           </div>
-          <a href="#" class="project-link" data-project="portfolio">View Project →</a>
+          <a href="#" class="project-link" data-project="portfolio">View Project -&gt;</a>
         </div>
       </div>
       <div class="project-card">
@@ -1197,7 +1357,52 @@
           <div class="project-tags">
             <span class="tag">React</span><span class="tag">Arabic UI</span><span class="tag">E-Commerce</span>
           </div>
-          <a href="#" class="project-link" data-project="tryjo">View Project →</a>
+          <a href="#" class="project-link" data-project="tryjo">View Project -&gt;</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb has-image">
+          <img class="project-preview-main" src="assets/justice-city-home.png" alt="Justice City homepage screenshot">
+          <div class="project-preview-strip" aria-label="Justice City screenshots">
+            <img src="assets/justice-city-home.png" alt="Justice City homepage">
+            <img src="assets/justice-city-creators.png" alt="Justice City creators section">
+            <img src="assets/justice-city-store.png" alt="Justice City store homepage">
+            <img src="assets/justice-city-priorities.png" alt="Justice City priorities page">
+            <img src="assets/justice-city-product.png" alt="Justice City product details">
+            <img src="assets/justice-city-cart.png" alt="Justice City cart drawer">
+            <img src="assets/justice-city-checkout.png" alt="Justice City checkout page">
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Justice City Platform</div>
+          <div class="project-desc">Arabic gaming community platform with landing page, creator showcase, store, priority packages, cart flow, and checkout experience.</div>
+          <div class="project-tags">
+            <span class="tag">Gaming</span><span class="tag">Arabic UI</span><span class="tag">Store</span>
+          </div>
+          <a href="#" class="project-link" data-project="justice">View Project -&gt;</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb has-image">
+          <img class="project-preview-main" src="assets/super-strike-dashboard.png" alt="Super Strike dashboard screenshot">
+          <div class="project-preview-strip" aria-label="Super Strike screenshots">
+            <img src="assets/super-strike-login.png" alt="Super Strike login page">
+            <img src="assets/super-strike-loading.png" alt="Super Strike loading screen">
+            <img src="assets/super-strike-dashboard.png" alt="Super Strike admin dashboard">
+            <img src="assets/super-strike-success.png" alt="Super Strike success page">
+            <img src="assets/super-strike-store.png" alt="Super Strike products store">
+            <img src="assets/super-strike-settings.png" alt="Super Strike settings page">
+            <img src="assets/super-strike-analytics.png" alt="Super Strike analytics page">
+            <img src="assets/super-strike-users.png" alt="Super Strike users management page">
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Super Strike Platform</div>
+          <div class="project-desc">Arabic purple-themed management and store platform with login, loading flow, admin dashboard, analytics, users, settings, products, and success screens.</div>
+          <div class="project-tags">
+            <span class="tag">Dashboard</span><span class="tag">Store</span><span class="tag">Arabic UI</span>
+          </div>
+          <a href="#" class="project-link" data-project="superstrike">View Project -&gt;</a>
         </div>
       </div>
       <div class="project-card">
@@ -1215,8 +1420,9 @@
           <div class="project-tags">
             <span class="tag">Dashboard</span><span class="tag">Charts</span><span class="tag">Security UI</span>
           </div>
-          <a href="#" class="project-link" data-project="atp">View Project →</a>
+          <a href="#" class="project-link" data-project="atp">View Project -&gt;</a>
         </div>
+      </div>
       </div>
     </div>
   </section>
@@ -1227,12 +1433,12 @@
     <div class="project-modal-content" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
       <div class="project-modal-header">
         <div class="project-modal-title" id="projectModalTitle">Project Gallery</div>
-        <button class="project-modal-close" type="button" aria-label="Close gallery">×</button>
+        <button class="project-modal-close" type="button" aria-label="Close gallery"><span class="close-icon" aria-hidden="true"></span></button>
       </div>
       <div class="project-modal-stage">
-        <button class="project-modal-nav project-modal-prev" type="button" aria-label="Previous image">‹</button>
+        <button class="project-modal-nav project-modal-prev" type="button" aria-label="Previous image"><span class="arrow-icon arrow-left" aria-hidden="true"></span></button>
         <img class="project-modal-image" id="projectModalImage" src="" alt="">
-        <button class="project-modal-nav project-modal-next" type="button" aria-label="Next image">›</button>
+        <button class="project-modal-nav project-modal-next" type="button" aria-label="Next image"><span class="arrow-icon arrow-right" aria-hidden="true"></span></button>
       </div>
       <div class="project-modal-thumbs" id="projectModalThumbs"></div>
     </div>
@@ -1355,15 +1561,15 @@
           <label class="form-label">Message</label>
           <textarea class="form-input" placeholder="Tell me about your project..."></textarea>
         </div>
-        <button class="btn-primary" onclick="handleSend()" style="width:100%;justify-content:center;">Send Message ✉️</button>
-        <p id="formMsg" style="font-family:var(--font-mono);font-size:0.8rem;color:var(--accent);display:none;text-align:center;margin-top:0.5rem;">✓ Message sent! I'll get back to you soon.</p>
+        <button class="btn-primary" onclick="handleSend()" style="width:100%;justify-content:center;">Send Message âœ‰ï¸</button>
+        <p id="formMsg" style="font-family:var(--font-mono);font-size:0.8rem;color:var(--accent);display:none;text-align:center;margin-top:0.5rem;">âœ“ Message sent! I'll get back to you soon.</p>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <span class="footer-copy">© 2026 Mohammed Almomani — All rights reserved.</span>
+    <span class="footer-copy">Â© 2026 Mohammed Almomani â€” All rights reserved.</span>
     <div class="footer-socials">
       <a href="https://github.com/mohamme-cmd" class="social-link" title="GitHub">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3C5.4.3 0 5.7 0 12.3c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.8-1.6 8.2-6.1 8.2-11.4C24 5.7 18.6.3 12 .3z"/></svg>
@@ -1408,6 +1614,27 @@
       setTimeout(() => { msg.style.display = 'none'; }, 4000);
     }
 
+    // Projects carousel arrows
+    const projectsGrid = document.getElementById('projectsGrid');
+    const projectsPrev = document.querySelector('.projects-prev');
+    const projectsNext = document.querySelector('.projects-next');
+
+    function scrollProjects(direction) {
+      if (!projectsGrid) return;
+      const card = projectsGrid.querySelector('.project-card');
+      if (!card) return;
+      const gap = parseFloat(getComputedStyle(projectsGrid).gap) || 24;
+      const amount = card.getBoundingClientRect().width + gap;
+      projectsGrid.classList.add('is-sliding');
+      projectsGrid.scrollBy({ left: direction * amount, behavior: 'smooth' });
+      setTimeout(() => projectsGrid.classList.remove('is-sliding'), 420);
+    }
+
+    if (projectsPrev && projectsNext) {
+      projectsPrev.addEventListener('click', () => scrollProjects(-1));
+      projectsNext.addEventListener('click', () => scrollProjects(1));
+    }
+
     // Project image gallery
     const projectGalleries = {
       portfolio: {
@@ -1427,6 +1654,31 @@
           { src: 'assets/tryjo-login.svg', alt: 'TRY JO login modal' }
         ]
       },
+      justice: {
+        title: 'Justice City Platform',
+        images: [
+          { src: 'assets/justice-city-home.png', alt: 'Justice City homepage' },
+          { src: 'assets/justice-city-creators.png', alt: 'Justice City creators section' },
+          { src: 'assets/justice-city-store.png', alt: 'Justice City store homepage' },
+          { src: 'assets/justice-city-priorities.png', alt: 'Justice City priorities page' },
+          { src: 'assets/justice-city-product.png', alt: 'Justice City product details' },
+          { src: 'assets/justice-city-cart.png', alt: 'Justice City cart drawer' },
+          { src: 'assets/justice-city-checkout.png', alt: 'Justice City checkout page' }
+        ]
+      },
+      superstrike: {
+        title: 'Super Strike Platform',
+        images: [
+          { src: 'assets/super-strike-login.png', alt: 'Super Strike login page' },
+          { src: 'assets/super-strike-loading.png', alt: 'Super Strike loading screen' },
+          { src: 'assets/super-strike-dashboard.png', alt: 'Super Strike admin dashboard' },
+          { src: 'assets/super-strike-success.png', alt: 'Super Strike success page' },
+          { src: 'assets/super-strike-store.png', alt: 'Super Strike products store' },
+          { src: 'assets/super-strike-settings.png', alt: 'Super Strike settings page' },
+          { src: 'assets/super-strike-analytics.png', alt: 'Super Strike analytics page' },
+          { src: 'assets/super-strike-users.png', alt: 'Super Strike users management page' }
+        ]
+      },
       atp: {
         title: 'ATP Security Dashboard',
         images: [
@@ -1436,6 +1688,244 @@
         ]
       }
     };
+
+    const translations = {
+      en: {
+        toggle: 'AR',
+        nav: ['Home', 'About', 'Skills', 'Projects', 'Services', 'Contact'],
+        heroName: 'Mohammed<br><span class="accent">Almomani</span>',
+        heroEyebrow: 'Available for work',
+        heroTagline: 'Full-Stack Web Developer | Frontend Specialist<br />Building scalable web platforms &amp; modern experiences<span class="typed-cursor"></span>',
+        stats: ['Years Web Dev', 'Years Backend', 'Projects'],
+        heroButtons: ['Contact Me →', 'View Projects'],
+        heroBadge: '✦ Open to Opportunities',
+        aboutLabel: 'Who I Am',
+        aboutTitle: 'About Me',
+        aboutText: [
+          'Passionate developer focused on building scalable backend systems and modern web platforms with clean, maintainable code.',
+          'I am Mohammed Almomani, a Full-Stack Developer with more than 2 years of experience building production-ready platforms and web applications.',
+          'I started my journey at an early age, focusing on mastering frontend architecture, backend systems, and full-stack web engineering to create scalable real-world solutions.',
+          'Today, I build high-performance web platforms and digital products, serving clients across various industries with modern technology stacks.'
+        ],
+        aboutCards: [
+          ['Location', 'Based in Jordan — Available for remote work worldwide.'],
+          ['Education', 'Computer Science background combined with advanced programming skills and continuous self-learning.'],
+          ['Professional Work', 'Full-Stack Developer delivering high-quality web applications and digital solutions for clients globally.'],
+          ['Mission', 'Crafting clean, scalable code that solves real problems and delivers great user experiences.']
+        ],
+        skillsLabel: 'What I Use',
+        skillsTitle: 'Technical Skills',
+        skillsDesc: 'Technologies and tools I use to build scalable applications.',
+        skillTabs: ['All', 'Frontend', 'Backend', 'Other'],
+        projectsLabel: 'My Work',
+        projectsTitle: 'Projects',
+        projectsDesc: 'Some of the applications I have built using modern technologies.',
+        viewProject: 'View Project ->',
+        projectTitles: {
+          portfolio: 'Personal Portfolio',
+          tryjo: 'TRY JO E-Commerce Store',
+          justice: 'Justice City Platform',
+          superstrike: 'Super Strike Platform',
+          atp: 'ATP Security Dashboard'
+        },
+        projectDescs: {
+          portfolio: 'Interactive personal portfolio with bold orange-on-black visuals, animated developer details, sections for skills, projects, experience, and services.',
+          tryjo: 'Luxury Arabic e-commerce experience with product browsing, authentication flow, refined dark UI, and responsive shopping pages.',
+          justice: 'Arabic gaming community platform with landing page, creator showcase, store, priority packages, cart flow, and checkout experience.',
+          superstrike: 'Arabic purple-themed management and store platform with login, loading flow, admin dashboard, analytics, users, settings, products, and success screens.',
+          atp: 'Arabic security control panel with live monitoring, system status metrics, threat tracking, charts, and protected admin navigation.'
+        },
+        servicesLabel: 'What I Offer',
+        servicesTitle: 'Services',
+        servicesDesc: 'Professional development solutions for modern applications.',
+        services: [
+          ['Web Applications', 'Modern responsive web apps using Next.js, React and scalable architecture tailored to your needs.'],
+          ['Backend Systems', 'High-performance APIs, secure authentication, and robust database architecture for production systems.'],
+          ['UI/UX Development', 'Pixel-perfect, animated interfaces that deliver outstanding user experiences across all devices.'],
+          ['Optimization', 'Performance optimization for web apps, APIs, and full-stack systems to ensure fast, reliable delivery.']
+        ],
+        contactLabel: 'Get In Touch',
+        contactTitle: 'Contact Me',
+        contactHeading: 'Have a project idea or collaboration?',
+        contactDesc: "Let's talk. I'm always open to discussing new opportunities, creative ideas, or ways to help you build something great.",
+        contactLabels: ['Email', 'Discord', 'WhatsApp', 'Instagram'],
+        whatsappValue: 'Send Message',
+        formLabels: ['Your Name', 'Email Address', 'Message'],
+        placeholders: ['John Doe', 'john@example.com', 'Tell me about your project...'],
+        sendButton: 'Send Message ✉️',
+        sentMessage: "✓ Message sent! I'll get back to you soon.",
+        footer: '© 2026 Mohammed Almomani — All rights reserved.'
+      },
+      ar: {
+        toggle: 'EN',
+        nav: ['الرئيسية', 'من أنا', 'المهارات', 'المشاريع', 'الخدمات', 'تواصل'],
+        heroName: 'محمد<br><span class="accent">المومني</span>',
+        heroEyebrow: 'متاح للعمل',
+        heroTagline: 'مطور ويب متكامل | متخصص واجهات أمامية<br />أبني منصات ويب قابلة للتوسع وتجارب رقمية حديثة<span class="typed-cursor"></span>',
+        stats: ['سنوات تطوير ويب', 'سنوات باك إند', 'مشروع'],
+        heroButtons: ['تواصل معي ←', 'عرض المشاريع'],
+        heroBadge: '✦ متاح للفرص',
+        aboutLabel: 'من أنا',
+        aboutTitle: 'نبذة عني',
+        aboutText: [
+          'مطور شغوف ببناء أنظمة خلفية قابلة للتوسع ومنصات ويب حديثة بكود نظيف وقابل للصيانة.',
+          'أنا محمد المومني، مطور Full-Stack بخبرة تزيد عن سنتين في بناء منصات وتطبيقات ويب جاهزة للإنتاج.',
+          'بدأت رحلتي مبكراً بالتركيز على بنية الواجهات، الأنظمة الخلفية، وهندسة الويب المتكاملة لصناعة حلول واقعية قابلة للتوسع.',
+          'اليوم أبني منصات ويب عالية الأداء ومنتجات رقمية لعملاء في مجالات مختلفة باستخدام تقنيات حديثة.'
+        ],
+        aboutCards: [
+          ['الموقع', 'مقيم في الأردن — متاح للعمل عن بعد حول العالم.'],
+          ['التعليم', 'خلفية في علوم الحاسوب مع مهارات برمجية متقدمة وتعلم مستمر.'],
+          ['العمل الاحترافي', 'مطور Full-Stack يقدم تطبيقات ويب وحلولاً رقمية عالية الجودة للعملاء عالمياً.'],
+          ['الرسالة', 'بناء كود نظيف وقابل للتوسع يحل مشاكل حقيقية ويقدم تجربة مستخدم ممتازة.']
+        ],
+        skillsLabel: 'What I Use',
+        skillsTitle: 'Technical Skills',
+        skillsDesc: 'Technologies and tools I use to build scalable applications.',
+        skillTabs: ['All', 'Frontend', 'Backend', 'Other'],
+        projectsLabel: 'أعمالي',
+        projectsTitle: 'المشاريع',
+        projectsDesc: 'بعض التطبيقات والمنصات التي بنيتها باستخدام تقنيات حديثة.',
+        viewProject: 'عرض المشروع ->',
+        projectTitles: {
+          portfolio: 'الموقع الشخصي',
+          tryjo: 'متجر TRY JO الإلكتروني',
+          justice: 'منصة مدينة العدالة',
+          superstrike: 'منصة Super Strike',
+          atp: 'لوحة ATP Security'
+        },
+        projectDescs: {
+          portfolio: 'موقع شخصي تفاعلي بتصميم أسود وبرتقالي، يعرض التفاصيل، المهارات، المشاريع، الخبرة، والخدمات.',
+          tryjo: 'تجربة متجر عربي فاخرة تشمل تصفح المنتجات، تسجيل الدخول، واجهة داكنة أنيقة، وصفحات تسوق متجاوبة.',
+          justice: 'منصة مجتمع ألعاب عربية تتضمن صفحة تعريفية، عرض صناع المحتوى، متجر، باقات أولوية، سلة شراء، وتجربة دفع.',
+          superstrike: 'منصة إدارة ومتجر بتصميم بنفسجي عربي تشمل تسجيل الدخول، شاشة تحميل، لوحة تحكم، إحصائيات، مستخدمين، إعدادات، ومنتجات.',
+          atp: 'لوحة تحكم أمنية عربية تتضمن مراقبة مباشرة، مؤشرات حالة النظام، تتبع التهديدات، الرسوم البيانية، وتنقل إداري محمي.'
+        },
+        servicesLabel: 'ما أقدمه',
+        servicesTitle: 'الخدمات',
+        servicesDesc: 'حلول تطوير احترافية للتطبيقات والمنصات الحديثة.',
+        services: [
+          ['تطبيقات الويب', 'تطبيقات ويب حديثة ومتجاوبة باستخدام Next.js وReact وبنية قابلة للتوسع حسب احتياجك.'],
+          ['أنظمة الخلفية', 'واجهات API عالية الأداء، تسجيل دخول آمن، وبنية قواعد بيانات قوية للأنظمة الإنتاجية.'],
+          ['تطوير UI/UX', 'واجهات دقيقة ومتحركة تقدم تجربة مستخدم ممتازة على جميع الأجهزة.'],
+          ['تحسين الأداء', 'تحسين أداء تطبيقات الويب والـ APIs والأنظمة المتكاملة لضمان سرعة واعتمادية عالية.']
+        ],
+        contactLabel: 'تواصل معي',
+        contactTitle: 'تواصل معي',
+        contactHeading: 'لديك فكرة مشروع أو تعاون؟',
+        contactDesc: 'خلينا نحكي. أنا دائماً منفتح لمناقشة الفرص الجديدة، الأفكار الإبداعية، أو مساعدتك في بناء شيء مميز.',
+        contactLabels: ['البريد', 'ديسكورد', 'واتساب', 'إنستغرام'],
+        whatsappValue: 'إرسال رسالة',
+        formLabels: ['اسمك', 'البريد الإلكتروني', 'الرسالة'],
+        placeholders: ['محمد علي', 'name@example.com', 'احكِ لي عن مشروعك...'],
+        sendButton: 'إرسال الرسالة ✉️',
+        sentMessage: '✓ تم إرسال الرسالة! سأرد عليك قريباً.',
+        footer: '© 2026 محمد المومني — جميع الحقوق محفوظة.'
+      }
+    };
+
+    const languageToggle = document.getElementById('languageToggle');
+    let currentLang = localStorage.getItem('portfolioLang') || 'ar';
+
+    function setText(selector, value, index = 0) {
+      const element = document.querySelectorAll(selector)[index];
+      if (element) element.textContent = value;
+    }
+
+    function setHTML(selector, value, index = 0) {
+      const element = document.querySelectorAll(selector)[index];
+      if (element) element.innerHTML = value;
+    }
+
+    function setPlaceholder(selector, value, index = 0) {
+      const element = document.querySelectorAll(selector)[index];
+      if (element) element.placeholder = value;
+    }
+
+    function applyLanguage(lang) {
+      const t = translations[lang];
+      currentLang = lang;
+      localStorage.setItem('portfolioLang', lang);
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      document.body.dir = lang === 'ar' ? 'rtl' : 'ltr';
+      if (languageToggle) {
+        languageToggle.textContent = t.toggle;
+        languageToggle.setAttribute('aria-label', lang === 'ar' ? 'Switch to English' : 'التبديل إلى العربية');
+      }
+
+      ['#home', '#about', '#skills', '#projects', '#services', '#contact'].forEach((href, index) => {
+        setText(`.nav-links a[href="${href}"]`, t.nav[index]);
+      });
+
+      setHTML('.hero-name', t.heroName);
+      setText('.hero-eyebrow', t.heroEyebrow);
+      setHTML('.hero-tagline', t.heroTagline);
+      t.stats.forEach((value, index) => setText('.stat-label', value, index));
+      setText('.hero-actions .btn-primary', t.heroButtons[0]);
+      setText('.hero-actions .btn-outline', t.heroButtons[1]);
+      setText('.hero-badge', t.heroBadge);
+
+      setText('#about .section-label', t.aboutLabel);
+      setText('#about .section-title', t.aboutTitle);
+      t.aboutText.forEach((value, index) => setText('.about-text p', value, index));
+      t.aboutCards.forEach((card, index) => {
+        setText('.about-card h4', card[0], index);
+        setText('.about-card p', card[1], index);
+      });
+
+      setText('#skills .section-label', t.skillsLabel);
+      setText('#skills .section-title', t.skillsTitle);
+      setText('#skills > p', t.skillsDesc);
+      t.skillTabs.forEach((value, index) => setText('.tab-btn', value, index));
+
+      setText('#projects .section-label', t.projectsLabel);
+      setText('#projects .section-title', t.projectsTitle);
+      setText('#projects > p', t.projectsDesc);
+      Object.keys(t.projectTitles).forEach(key => {
+        const link = document.querySelector(`.project-link[data-project="${key}"]`);
+        if (!link) return;
+        const card = link.closest('.project-card');
+        card.querySelector('.project-title').textContent = t.projectTitles[key];
+        card.querySelector('.project-desc').textContent = t.projectDescs[key];
+        link.textContent = t.viewProject;
+        if (projectGalleries[key]) projectGalleries[key].title = t.projectTitles[key];
+      });
+
+      setText('#services .section-label', t.servicesLabel);
+      setText('#services .section-title', t.servicesTitle);
+      setText('#services > p', t.servicesDesc);
+      t.services.forEach((service, index) => {
+        setText('.service-title', service[0], index);
+        setText('.service-desc', service[1], index);
+      });
+
+      setText('#contact .section-label', t.contactLabel);
+      setText('#contact .section-title', t.contactTitle);
+      setText('.contact-info h3', t.contactHeading);
+      setText('.contact-info p', t.contactDesc);
+      t.contactLabels.forEach((value, index) => setText('.contact-item-label', value, index));
+      setText('.contact-item-value', t.whatsappValue, 2);
+      t.formLabels.forEach((value, index) => setText('.form-label', value, index));
+      setPlaceholder('.form-input', t.placeholders[0], 0);
+      setPlaceholder('.form-input', t.placeholders[1], 1);
+      setPlaceholder('.form-input', t.placeholders[2], 2);
+      setText('#contactForm .btn-primary', t.sendButton);
+      setText('#formMsg', t.sentMessage);
+      setText('.footer-copy', t.footer);
+
+      if (projectModal.classList.contains('open')) renderProjectGallery();
+    }
+
+    if (languageToggle) {
+      languageToggle.addEventListener('click', () => applyLanguage(currentLang === 'en' ? 'ar' : 'en'));
+      languageToggle.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          applyLanguage(currentLang === 'en' ? 'ar' : 'en');
+        }
+      });
+    }
 
     const projectModal = document.getElementById('projectModal');
     const projectModalTitle = document.getElementById('projectModalTitle');
@@ -1510,6 +2000,8 @@
       if (event.key === 'ArrowRight') changeProjectImage(1);
     });
 
+    applyLanguage(currentLang);
+
     // Smooth active nav link
     const sections = document.querySelectorAll('section[id]');
     window.addEventListener('scroll', () => {
@@ -1524,3 +2016,4 @@
   </script>
 </body>
 </html>
+
